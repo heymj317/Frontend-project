@@ -1,0 +1,73 @@
+body {
+  background-image: url(../images/background.avif);  
+  background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  min-height: 2000px;
+    padding-top: 70px;
+    opacity:98%;
+  }
+  
+  .btn-linkedin {
+	  background: #0E76A8;
+	  border-radius: 0;
+	  color: #fff;
+	  border-width: 1px;
+	  border-style: solid;
+	  border-color: #084461;
+    height: 30px;
+	}
+	.btn-linkedin:link, .btn-linkedin:visited {
+	  color: #fff;
+	}
+	.btn-linkedin:active, .btn-linkedin:hover {
+	  background: #084461;
+	  color: #fff;
+	}
+
+  .row {
+    margin-top: 0px
+    p
+  }
+  .row .row {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  [class*="col-"] {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  #results {
+
+    width: 700px;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: Left;
+  }
+  
+  .result-card {
+
+    width: 660px;
+    color: black;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+  }
+
+  .user-form {
+    padding-left: 4000px;
+  }
+
+  .card-img-top{
+    width:300px;
+    height:175px;
+    overflow:hidden;
+    }
+
+  
+
+ 
