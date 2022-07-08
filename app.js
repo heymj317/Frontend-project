@@ -1,4 +1,3 @@
-console.log("Hello World");
 
 const $input = $("input[name='Search']");
 const $userform = $("#user-form");
@@ -8,23 +7,21 @@ const $userform = $("#user-form");
 $userform.submit(function (event) {
     event.preventDefault();
     dbSearch(event); //SEARCH DATABASE, POPULATE RESULTS TO WEBPAGE
+    countdown();
 });
 
 
 /// - - - DATABASE SEARCH
 function dbSearch(obj) {
     const userInput = $input.val();
-    const url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=20&apiKey=5bf7df2d2e5a451b91cb83e450fed719`;
-    //const url = `https://api.tvmaze.com/search/shows?q=${userInput}`;
+    const url = `https://api.newscatcherapi.com/v2/search?q=${userInput}&page_size=20`;
+
     //HTTP GET REQUEST
-    // $.get(url, (data) => {
-    //     buildResults(data);
-    //     //console.log(data);
-    // });
+
 
     $.ajax({
         type: "GET",
-        url: 'https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=business&page_size=20',
+        url: `${url}`,
         crossDomain: true,
         dataType: 'json',
         headers: { "x-api-key": "7nbElxjKQUcoFa1q-mSJu-V_dNrcRhJtsy8q3eARoTE" },
@@ -71,23 +68,71 @@ function buildResults(data) {
 };
 
 function readArticle(articleObj, status) {
-    let $span = $(`<span></span>`).addClass("result-card");
+    let $row = $(`<div class="row"></div>`);
+
     if (status === "ok") {
-        let $spanh3 = $("<h3></h3>").addClass("card-title").text(`${articleObj.title}`);
-        let $spanImg = $("<img></img>").addClass("img-thumbnail").attr("src", `${articleObj.media}`);
-        $span.append($spanh3, $spanImg);
+        $row.html(`
+            <div class="w-responsive text-left mx-auto pb-2 px-4">
+                <div class="card bg-white rounded">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="ratio ratio-4x3">
+                                <img
+                                    src="${articleObj.media}"
+                                    class="col px-0" alt="...">
+                            </div>
+                        </div>
+                            <div class="col-sm-8 p-3">
+                                <h5 class="card-title">${articleObj.title}</h5>
+                                <p class="card-text">${articleObj.excerpt}</p>
+                                <cite title="Source Title"> - From ${articleObj.clean_url}  </cite>
+                                <a href="${articleObj.link}" class="btn btn-secondary btn-sm" role="button">Read Full Article</a>
+                            </div>
+                    </div>
+                </div>
+            </div>`);
 
     } else {
         //uh-oh messsage
-        let $spanh3 = $("<h3></h3>").addClass("card-title").text(`Oh no!`);
-        let $spanDiv = $("<div></div>").addClass("error-message");
-        let $errorMsg = `Sorry, no articles available at this time. Try again later`
-        $spanDiv.html = $errorMsg;
-        $span.append($spanh3, $spanImg);
-        console.log("msg: " + status);
+        $row.html(`<div class="container">
+                        <div class="card-summary">
+                            <h4>Oh no!</h4>    
+                            <p>
+                            <i>Sorry, no articles available at this time. Try again later.</i>
+                            </p>
+                        </div>
+                    </div>`);
+
     }
 
 
 
-    return $span;
+    return $row;
+};
+
+
+function countdown() {
+    let timer = Date.now() + 60000;
+    let x = setInterval(function () {
+
+        // Get today's date and time
+        let now = Date.now();
+        let distance = timer - now;
+
+        // Find the distance between now and the count down date  
+        // Time calculations for days, hours, minutes and seconds
+        // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        // var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        $("#demo").text(`${seconds} seconds until your next search`);
+
+        // If the count down is over, write some text 
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "";
+        }
+    }, 1000);
 };
