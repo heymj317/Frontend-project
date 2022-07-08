@@ -36,11 +36,11 @@
 <body>
   <div class="bg obj-fit-cover" style="background-image: url('images/background.avif'); height: 100vh;">
   <!-- Fixed navbar -->
-  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Michael J's Awesome Page</a>
 
-        <button type="button" class="navbar-toggler collapse" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-expanded="false" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -51,17 +51,14 @@
           <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
-              aria-expanded="false">Past Projects <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a rel="noreferrer" target="_blank" href="tv-finder.html">TV Show Finder</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li class="dropdown-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+          <li class="dropdown nav-item">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Past Projects
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
+              <li><a class="dropdown-item" href="tv-finder.html">TV Show Finder</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
         </ul>
