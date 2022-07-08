@@ -14,7 +14,7 @@ $userform.submit(function (event) {
 /// - - - DATABASE SEARCH
 function dbSearch(obj) {
     const userInput = $input.val();
-    const url = `https://api.newscatcherapi.com/v2/search?q=${userInput}&page_size=20`;
+    const url = `https://api.newscatcherapi.com/v2/search?q=${userInput}&lang=en&page_size=20`;
 
     //HTTP GET REQUEST
 
