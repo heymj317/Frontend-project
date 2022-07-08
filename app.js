@@ -26,7 +26,6 @@ function dbSearch(obj) {
         dataType: 'json',
         headers: { "x-api-key": "7nbElxjKQUcoFa1q-mSJu-V_dNrcRhJtsy8q3eARoTE" },
         success: function (response) {
-            console.log(response);
             buildResults(response);
         },
         error: function (response) {
@@ -55,7 +54,6 @@ function buildResults(data) {
     }
     //ITERATE
     for (var i = 0; i < resultSize; ++i) {
-        console.log(i + `: ${data[`articles`][`${i}`][`title`]}`);
         $resultCard = readArticle(data[`articles`][`${i}`], data.status);
         $resultCard.appendTo($results);
     }
