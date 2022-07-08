@@ -1,0 +1,10 @@
+.bg-img {
+    background-image: url(../images/background.avif);  
+    background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+
+    min-height: 2000px;
+      padding-top: 70px;
+      opacity:98%;
+    }
