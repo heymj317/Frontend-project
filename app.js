@@ -116,13 +116,12 @@ function countdown() {
         // Get today's date and time
         let now = Date.now();
         let distance = timer - now;
-
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         // Output the result in an element with id="demo"
         $("#demo").text(`${seconds} seconds until your next search`);
 
-        // If the count down is over, write some text 
+        // If the count down is over, clear 
         if (distance < 0) {
             clearInterval(x);
             document.getElementById("demo").innerHTML = "";
