@@ -83,8 +83,10 @@ function readArticle(articleObj, status) {
                             <div class="col-sm-8 p-3">
                                 <h5 class="card-title">${articleObj.title}</h5>
                                 <p class="card-text">${articleObj.excerpt}</p>
-                                <cite title="Source Title"> - From ${articleObj.clean_url}  </cite>
-                                <a href="${articleObj.link}" class="btn btn-secondary btn-sm" role="button">Read Full Article</a>
+                                <blockquote class="blockquote">
+                                <footer class="blockquote-footer"><cite title="Source Title"> - From ${articleObj.clean_url}  </cite>
+                                <a href="${articleObj.link}" class="btn btn-secondary btn-sm" role="button">Read Full Article</a></footer>
+                                </blockquote>
                             </div>
                     </div>
                 </div>
