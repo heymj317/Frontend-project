@@ -2,29 +2,25 @@
 const $input = $("input[name='Search']");
 const $userform = $("#user-form");
 
-
 /// - - - USER QUERY
 $userform.submit(function (event) {
     event.preventDefault();
-    dbSearch(event); //SEARCH DATABASE, POPULATE RESULTS TO WEBPAGE
-    countdown();
+    newsSearch(); //SEARCH DATABASE, POPULATE RESULTS TO WEBPAGE
 });
 
 
 /// - - - DATABASE SEARCH
-function dbSearch(obj) {
-    const userInput = $input.val();
-    const url = `https://api.newscatcherapi.com/v2/search?q=${userInput}&lang=en&page_size=20`;
+function newsSearch() {
+    const userInput = encodeURIComponent($input.val());
+    const url = `https://newsapi.org/v2/everything?q=${userInput}&language=en&pageSize=20`;
 
     //HTTP GET REQUEST
-
-
     $.ajax({
         type: "GET",
         url: `${url}`,
         crossDomain: true,
         dataType: 'json',
-        headers: { "x-api-key": "7nbElxjKQUcoFa1q-mSJu-V_dNrcRhJtsy8q3eARoTE" },
+        headers: { "x-api-key": "5bf7df2d2e5a451b91cb83e450fed719" },
         success: function (response) {
             buildResults(response);
         },
@@ -37,30 +33,30 @@ function dbSearch(obj) {
 };
 
 
+
+
+
 /// - - - RESULT LIST BUILDER
 function buildResults(data) {
+    //this is hook into page
+    console.log(data)
     let $results = $("#results").empty();
     let resultSize;
-    //let $resultsDiv = $("<div></div>").addClass("contribute");
     let $resultCard;
-
-    //Get Length >> 
+       //Get resultsize >> 
     switch (true) {
         case data.totalResults - 20 < 0:
-            resultSize = data.total_hits;
+            resultSize = data.totalResults;
             break;
         default:
             resultSize = 20;
     }
     //ITERATE
     for (var i = 0; i < resultSize; ++i) {
+        console.log(data[`articles`][`${i}`])
         $resultCard = readArticle(data[`articles`][`${i}`], data.status);
         $resultCard.appendTo($results);
     }
-    // for (const article in data.articles) {
-    //     console.log(`data.articles[#], data.status: ${article}, ${data.status}`);
-
-    // }
 
 
 };
@@ -76,16 +72,16 @@ function readArticle(articleObj, status) {
                         <div class="col-lg-4">
                             <div class="ratio ratio-4x3">
                                 <img
-                                    src="${articleObj.media}"
+                                    src="${articleObj.urlToImage}"
                                     class="col px-0" alt="...">
                             </div>
                         </div>
                             <div class="col-sm-8 p-3">
                                 <h5 class="card-title">${articleObj.title}</h5>
-                                <p class="card-text">${articleObj.excerpt}</p>
+                                <p class="card-text">${articleObj.description}</p>
                                 <blockquote class="blockquote">
-                                <footer class="blockquote-footer"><cite title="Source Title"> - From ${articleObj.clean_url}  </cite>
-                                <a href="${articleObj.link}" class="btn btn-secondary btn-sm" role="button">Read Full Article</a></footer>
+                                <footer class="blockquote-footer"><cite title="Source Title">From ${articleObj.source.name}  </cite>
+                                <a href="${articleObj.url}" id="articleBtn" style=margin:5px rel=noreferrer target=_blank  class="btn btn-secondary btn-sm" role="button">Read Full Article</a></footer>
                                 </blockquote>
                             </div>
                     </div>
@@ -111,6 +107,13 @@ function readArticle(articleObj, status) {
 };
 
 
+
+
+
+
+/*
+
+
 function countdown() {
     let timer = Date.now() + 60000;
     let x = setInterval(function () {
@@ -130,3 +133,5 @@ function countdown() {
         }
     }, 1000);
 };
+
+*/
